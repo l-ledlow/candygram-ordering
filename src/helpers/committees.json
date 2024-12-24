@@ -1,0 +1,137 @@
+{
+  "General Assemblies": [
+    {
+      "name": "Legal Committee (LEGAL)"
+    },
+    {
+      "name": "Economic and Financial Committee (ECOFIN)"
+    },
+    {
+      "name": "International Criminal Police Organization (INTERPOL)"
+    },
+    {
+      "name": "World Health Organization (WHO)"
+    },
+    {
+      "name": "Social, Cultural, and Humanitarian Committee (SOCHUM)"
+    },
+    {
+      "name": "Disarmament and International Security Committee (DISEC)"
+    },
+    {
+      "name": "World Intellectual Property Organization (WIPO)"
+    }
+  ],
+  "Economic and Social Councils": [
+    {
+      "name": "Commission on the Status of Women (CSW)"
+    },
+    {
+      "name": "Grand National Assembly of Türkiye (TBMM)"
+    },
+    {
+      "name": "African Development Bank Group (AfDB)"
+    },
+    {
+      "name": "Organization of African, Caribbean, and Pacific States (OACPS)"
+    },
+    {
+      "name": "Forum for East Asia-Latin American Cooperation (FEALAC)"
+    },
+    {
+      "name": "Council of Europe (CoE)"
+    },
+    {
+      "name": "United Nations Climate Change Conference (COP30), 2025"
+    },
+    {
+      "name": "United Nations Commission for Social Development (CSocD), 1995"
+    }
+  ],
+  "Historical Crisis": [
+    {
+      "name": "Mughal Mutineers: The Mughal Succession Crisis, 1707 - The Mughal Imperial Court"
+    },
+    {
+      "name": "Mughal Mutineers: The Mughal Succession Crisis, 1707 - Warlords’ Council"
+    },
+    {
+      "name": "Radio Ga Ga: Live Aid Planning Committee, 1985"
+    },
+    {
+      "name": "Lights, Camera, Political Action!: All-Union Creative Conference of Workers in Soviet Cinema, 1935"
+    },
+    {
+      "name": "(All-Women) Wonder Women: The Dahomey Amazons, 1885"
+    },
+    {
+      "name": "Just In Time: Council of Justinian the First, 527"
+    },
+    {
+      "name": "The Queen's Gambit: The Cabinet of Queen Lili’uokalani, 1891"
+    }
+  ],
+  "Contemporary Crisis": [
+    {
+      "name": "DeNILE is a River in Egypt: The Grand Ethiopian Renaissance Dam, 2011 - Ethiopian Council of Ministers of Meles Zenawi"
+    },
+    {
+      "name": "DeNILE is a River in Egypt: The Grand Ethiopian Renaissance Dam, 2011 - Egyptian Cabinet of Essam Sharaf"
+    },
+    {
+      "name": "United Nations Security Council: The Cypriot Missile Crisis, 1997"
+    },
+    {
+      "name": "Not Your Average K-Drama: Chaebols in Crisis, 1997"
+    },
+    {
+      "name": "Hot Takes on Hispaniola: Haitian Cabinet of Réné Préval, 2010"
+    },
+    {
+      "name": "DeBlazing a Path Forward: New York City Mayoral Advisory Commission, 2021"
+    },
+    {
+      "name": "A Paradise Lost: The Maldives Tourism Scandal, 2018"
+    }
+  ],
+  "Non-Traditionals": [
+    {
+      "name": "Ad hoc Committee of the Secretary-General"
+    },
+    {
+      "name": "Supreme Court of the United States (SCOTUS)"
+    },
+    {
+      "name": "International Court of Justice (ICJ)"
+    },
+    {
+      "name": "Press Corps"
+    },
+    {
+      "name": "(Bilingual Spanish/English) Comin' Up With a Country: The Congress of Cúcuta, 1821"
+    },
+    {
+      "name": "An \"Aye\" for an \"Aye\": The Pirates of Nassau, 1718"
+    },
+    {
+      "name": "(Novice Chinese/English) (Cyber)secure the Bag: APT41, 2020"
+    }
+  ],
+  "National Security Apparatus": [
+    {
+      "name": "The Other Pacific War: La Guerra del Pacífico, 1878 - Chilean Cabinet of Aníbal Pinto"
+    },
+    {
+      "name": "The Other Pacific War: La Guerra del Pacífico, 1878 - Bolivian Cabinet of Hilarión Daza"
+    },
+    {
+      "name": "The Other Pacific War: La Guerra del Pacífico, 1878 - Peruvian Cabinet of Mariano Ignacio Prado"
+    },
+    {
+      "name": "The Other Pacific War: La Guerra del Pacífico, 1878 - Argentinian Cabinet of Nicolás Avellaneda"
+    },
+    {
+      "name": "The Other Pacific War: La Guerra del Pacífico, 1878 - American Cabinet of Rutherford B. Hayes"
+    }
+  ]
+}
