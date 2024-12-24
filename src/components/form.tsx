@@ -38,8 +38,6 @@ export default function CandyForm({ setError, setStatus }) {
         openCheckout(values.amount).then((response) => {
           if (response.error) {
             setError(response.error);
-          } else {
-            console.log(response);
           }
         });
         /*addCandygram({

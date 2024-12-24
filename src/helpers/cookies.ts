@@ -20,7 +20,6 @@ export const addCookie = (
   document.cookie = `candygram=${JSON.stringify(
     cookie
   )}; expires=${expiryDate}; path=/`;
-  console.log(document.cookie);
 };
 
 export const getCookie = () => {
@@ -30,7 +29,6 @@ export const getCookie = () => {
   if (!cookie) {
     return null;
   }
-  console.log(JSON.parse(cookie.split("=")[1]));
   return JSON.parse(cookie.split("=")[1]);
 };
 

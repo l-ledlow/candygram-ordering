@@ -14,11 +14,9 @@ function App() {
 
   useEffect(() => {
     const statusParam = window.location.pathname.split("=")[1];
-    console.log(statusParam);
     const controller = new AbortController();
     if (statusParam === "success") {
       const data = getCookie();
-      console.log(data);
       deleteCookie();
       if (!data) {
         setStatus(2);

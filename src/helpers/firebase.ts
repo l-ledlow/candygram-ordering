@@ -19,8 +19,6 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 
 export const addCandygram = async (data: any) => {
-  console.log("adding candygram");
-  console.log(data);
   //anon login to comply w/ database rules
   if (!auth.currentUser) {
     await signInAnonymously(auth).catch((e) => {
@@ -30,7 +28,6 @@ export const addCandygram = async (data: any) => {
   try {
     const candygramCollection = collection(db, "candygrams");
     const result = await addDoc(candygramCollection, data);
-    console.log("Document written with ID: ", result.id);
     return result;
   } catch (e) {
     console.error(e);
