@@ -13,7 +13,7 @@ function App() {
   const [status, setStatus] = useState(0);
 
   useEffect(() => {
-    const statusParam = window.location.pathname.split("=")[1];
+    const statusParam = window.location.href.split("?")[1].split("=")[1];
     const controller = new AbortController();
     if (statusParam === "success") {
       const data = getCookie();
