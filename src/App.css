@@ -125,3 +125,7 @@ h1 {
   fill: #5da8d7;
   transition: 0.2s;
 }
+
+.form h1 {
+  margin-inline: auto;
+}
