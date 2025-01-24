@@ -81,9 +81,7 @@ export default function CandyForm({ setError, setStatus }) {
         } else if (values.organ === "Select an organ") {
           setSelectedOrgan(null);
         } else if (values.organ !== selectedOrgan) {
-          setCommittees(
-            committeeData[values.organ].map((committee) => committee.name)
-          );
+          setCommittees([values.organ].map((committee) => committee.name));
           setSelectedOrgan(values.organ);
         }
         //TODO: Add profanity filter on message field
