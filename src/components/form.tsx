@@ -4,12 +4,17 @@ import { addCookie } from "../helpers/cookies";
 import { openCheckout } from "../helpers/stripe";
 import { useEffect, useState, useRef } from "react";
 import committeeData from "../helpers/committees.json";
+import { delLookup } from "../helpers/supabase";
 
 export default function CandyForm({ setError, setStatus }) {
   const [organs, setOrgans] = useState([""]);
   const [committees, setCommittees] = useState([""]);
   const [selectedOrgan, setSelectedOrgan] = useState(null);
+  const [selectedCommittee, setSelectedCommittee] = useState(null);
+  const [nameState, setNameState] = useState("");
   const [loading, setLoading] = useState(false);
+  const [hiddenCommittee, setHiddenCommittee] = useState("");
+  const [hiddenOrgan, setHiddenOrgan] = useState("");
 
   useEffect(() => {
     setOrgans(["Select an organ", ...Object.keys(committeeData)]);
@@ -25,31 +30,41 @@ export default function CandyForm({ setError, setStatus }) {
         committee: "",
         email: "",
       }}
-      onSubmit={(values) => {
-        //save cookie before redirecting to checkout
-        addCookie(
-          values.name,
-          values.amount,
-          values.message,
-          values.email,
-          values.organ,
-          values.committee
-        );
+      onSubmit={async (values) => {
+        if (
+          (values.organ === "Select an organ" || !values.organ) &&
+          (values.committee === "" || !values.committee)
+        ) {
+          const data = await delLookup(values.name);
+          if (data) {
+            addCookie(
+              values.name,
+              values.amount,
+              values.message,
+              values.email,
+              data.organ,
+              data.committee
+            );
+          }
+        } else {
+          //save cookie before redirecting to checkout
+          addCookie(
+            values.name,
+            values.amount,
+            values.message,
+            values.email,
+            values.organ,
+            values.committee
+          );
+        }
+        /*
+        setLoading(true);
         openCheckout(values.amount).then((response) => {
           if (response.error) {
             setError(response.error);
           }
-        });
-        /*addCandygram({
-          To: values.name,
-          Amount: values.amount,
-          Message: values.message,
-          Organ: values.organ,
-          Committee: values.committee,
-          timestamp: new Date().valueOf(),
-          Email: values.email,
-        });*/
-        //setStatus(1);
+          setLoading(false);
+        }); */
       }}
       validateOnBlur
       validate={(values) => {
@@ -81,9 +96,18 @@ export default function CandyForm({ setError, setStatus }) {
         } else if (values.organ === "Select an organ") {
           setSelectedOrgan(null);
         } else if (values.organ !== selectedOrgan) {
-          setCommittees([values.organ].map((committee) => committee.name));
+          console.log(values.organ);
+          console.log(committeeData[values.organ]);
+          setCommittees(
+            committeeData[values.organ].map((committee) => committee.name)
+          );
           setSelectedOrgan(values.organ);
+        } else if (values.committee === "") {
+          setSelectedCommittee(null);
+        } else if (values.committee !== selectedCommittee) {
+          setSelectedCommittee(values.committee);
         }
+        setNameState(values.name);
         //TODO: Add profanity filter on message field
         //checks if all fields are valid, if so, clears errors to allow submission
         if (
@@ -100,7 +124,7 @@ export default function CandyForm({ setError, setStatus }) {
       {({ errors }) => (
         <Form className="form">
           <h1>Send a Candygram</h1>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Recipient Name*</label>
           <Field
             id="name"
             name="name"
@@ -109,7 +133,7 @@ export default function CandyForm({ setError, setStatus }) {
           />
           {errors.name && <div className="error">{errors.name}</div>}
 
-          <label htmlFor="amount">Amount</label>
+          <label htmlFor="amount">Amount*</label>
           <Field
             id="amount"
             name="amount"
@@ -127,7 +151,7 @@ export default function CandyForm({ setError, setStatus }) {
           />
           {errors.message && <div className="error">{errors.message}</div>}
 
-          <label htmlFor="email">Email (yours)</label>
+          <label htmlFor="email">Email (yours)*</label>
           <Field
             id="email"
             name="email"
@@ -136,7 +160,7 @@ export default function CandyForm({ setError, setStatus }) {
           />
           {errors.email && <div className="error">{errors.email}</div>}
 
-          <label htmlFor="organ">Organ</label>
+          <label htmlFor="organ">Recipient Organ*</label>
           <Field
             as="select"
             id="organ"
@@ -151,7 +175,7 @@ export default function CandyForm({ setError, setStatus }) {
 
           {selectedOrgan && (
             <>
-              <label htmlFor="committee">Committee</label>
+              <label htmlFor="committee">Recipient Committee*</label>
               <Field
                 as="select"
                 id="committee"
@@ -168,7 +192,7 @@ export default function CandyForm({ setError, setStatus }) {
             </>
           )}
 
-          <button type="submit">Order</button>
+          <button type="submit">{loading ? "loading..." : "Order"}</button>
         </Form>
       )}
     </Formik>

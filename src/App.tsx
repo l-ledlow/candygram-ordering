@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import CandyForm from "./components/form";
 import Success from "./components/success";
 import Failure from "./components/failure";
-import { useParams } from "react-router";
 import { addCandygram } from "./helpers/firebase";
 import { getCookie, deleteCookie } from "./helpers/cookies";
 import "./App.css";
