@@ -57,14 +57,13 @@ export default function CandyForm({ setError, setStatus }) {
             values.committee
           );
         }
-        /*
         setLoading(true);
         openCheckout(values.amount).then((response) => {
           if (response.error) {
             setError(response.error);
           }
           setLoading(false);
-        }); */
+        });
       }}
       validateOnBlur
       validate={(values) => {
@@ -192,7 +191,9 @@ export default function CandyForm({ setError, setStatus }) {
             </>
           )}
 
-          <button type="submit">{loading ? "loading..." : "Order"}</button>
+          <button type="submit" disabled={loading}>
+            {loading ? "Loading..." : "Order"}
+          </button>
         </Form>
       )}
     </Formik>
