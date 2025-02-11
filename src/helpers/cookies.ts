@@ -4,7 +4,9 @@ export const addCookie = (
   message: string,
   email: string,
   organ: string,
-  committee: string
+  committee: string,
+  senderOrgan: string,
+  senderCommittee: string
 ) => {
   const cookie = {
     name,
@@ -13,6 +15,8 @@ export const addCookie = (
     email,
     organ,
     committee,
+    senderOrgan,
+    senderCommittee,
   };
   const expires = new Date();
   expires.setDate(expires.getDate() + 30);
