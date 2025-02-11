@@ -29,6 +29,9 @@ function App() {
         Committee: data.committee,
         timestamp: new Date().valueOf(),
         Email: data.email,
+        SenderOrgan: data.senderOrgan,
+        SenderCommittee: data.senderCommittee,
+        exp: false,
       }).then(() => {
         setStatus(1);
       });

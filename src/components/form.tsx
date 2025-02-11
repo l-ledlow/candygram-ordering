@@ -9,8 +9,11 @@ import { delLookup } from "../helpers/supabase";
 export default function CandyForm({ setError, setStatus }) {
   const [organs, setOrgans] = useState([""]);
   const [committees, setCommittees] = useState([""]);
+  const [senderCommittees, setSenderCommittees] = useState([""]);
   const [selectedOrgan, setSelectedOrgan] = useState(null);
   const [selectedCommittee, setSelectedCommittee] = useState(null);
+  const [selectedSenderOrgan, setSelectedSenderOrgan] = useState(null);
+  const [selectedSenderCommittee, setSelectedSenderCommittee] = useState(null);
   const [nameState, setNameState] = useState("");
   const [loading, setLoading] = useState(false);
   const [hiddenCommittee, setHiddenCommittee] = useState("");
@@ -29,6 +32,8 @@ export default function CandyForm({ setError, setStatus }) {
         organ: "Select an organ",
         committee: "",
         email: "",
+        senderOrgan: "Select an organ",
+        senderCommittee: "",
       }}
       onSubmit={async (values) => {
         if (
@@ -43,7 +48,9 @@ export default function CandyForm({ setError, setStatus }) {
               values.message,
               values.email,
               data.organ,
-              data.committee
+              data.committee,
+              values.senderOrgan,
+              values.senderCommittee
             );
           }
         } else {
@@ -54,7 +61,9 @@ export default function CandyForm({ setError, setStatus }) {
             values.message,
             values.email,
             values.organ,
-            values.committee
+            values.committee,
+            values.senderOrgan,
+            values.senderCommittee
           );
         }
         setLoading(true);
@@ -73,6 +82,7 @@ export default function CandyForm({ setError, setStatus }) {
           amount: "",
           message: "",
           organ: "",
+          senderOrgan: "",
         };
         if (!values.name) {
           errors.name = "Required";
@@ -105,6 +115,24 @@ export default function CandyForm({ setError, setStatus }) {
           setSelectedCommittee(null);
         } else if (values.committee !== selectedCommittee) {
           setSelectedCommittee(values.committee);
+        } else if (
+          values.senderOrgan !== "" &&
+          !organs.includes(values.senderOrgan)
+        ) {
+          errors.senderOrgan = "Invalid organ";
+        } else if (values.senderOrgan === "Select an organ") {
+          setSelectedSenderOrgan(null);
+        } else if (values.senderOrgan !== selectedSenderOrgan) {
+          console.log(values.senderOrgan);
+          console.log(committeeData[values.senderOrgan]);
+          setSenderCommittees(
+            committeeData[values.senderOrgan].map((committee) => committee.name)
+          );
+          setSelectedSenderOrgan(values.senderOrgan);
+        } else if (values.senderCommittee === "") {
+          setSelectedSenderCommittee(null);
+        } else if (values.senderCommittee !== selectedSenderCommittee) {
+          setSelectedSenderCommittee(values.senderCommittee);
         }
         setNameState(values.name);
         //TODO: Add profanity filter on message field
@@ -185,6 +213,40 @@ export default function CandyForm({ setError, setStatus }) {
                   <option value="">Select an organ</option>
                 )}
                 {committees.map((committee) => (
+                  <option value={committee}>{committee}</option>
+                ))}
+              </Field>
+            </>
+          )}
+
+          <label htmlFor="senderOrgan">Sender Organ</label>
+          <Field
+            as="select"
+            id="senderOrgan"
+            name="senderOrgan"
+            className={errors.senderOrgan ? "errorInput" : ""}
+          >
+            {organs.map((organ) => (
+              <option value={organ}>{organ}</option>
+            ))}
+          </Field>
+          {errors.senderOrgan && (
+            <div className="error">{errors.senderOrgan}</div>
+          )}
+
+          {selectedSenderOrgan && (
+            <>
+              <label htmlFor="senderCommittee">Sender Committee</label>
+              <Field
+                as="select"
+                id="senderCommittee"
+                name="senderCommittee"
+                placeholder="Committee"
+              >
+                {senderCommittees.length === 0 && (
+                  <option value="">Select an organ</option>
+                )}
+                {senderCommittees.map((committee) => (
                   <option value={committee}>{committee}</option>
                 ))}
               </Field>
